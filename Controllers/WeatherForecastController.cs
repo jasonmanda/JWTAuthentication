@@ -29,6 +29,16 @@ namespace JWTAuthentication.Controllers
         [Authorize]
         public IEnumerable<WeatherForecast> Get()
         {
+           foreach(var i in this.HttpContext.User.Claims){
+               var str=$"Issuer:{i.Issuer} \n";
+               str+=$"OriginalIssuer:{i.OriginalIssuer} \n";
+               str+=$"Properties:{i.Properties} \n";
+               str+=$"Subject:{i.Subject} \n";
+               str+=$"Type:{i.Type} \n";
+               str+=$"Value:{i.Value} \n";
+               str+=$"ValueType:{i.ValueType} \n";
+               _logger.LogInformation("{0}",str);
+           }
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
