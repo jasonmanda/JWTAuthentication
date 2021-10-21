@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using JWTAuthentication.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JWTAuthentication.Controllers
 {
@@ -25,6 +26,7 @@ namespace JWTAuthentication.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();
