@@ -32,7 +32,7 @@ namespace JWTAuthentication.Controllers
                 var tokenString = GenerateJSONWebToken(user);    
                 response = Ok(new { token = tokenString });    
             }    
-    
+
             return response;    
         }    
     
