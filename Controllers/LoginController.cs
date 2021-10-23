@@ -38,6 +38,22 @@ namespace JWTAuthentication.Controllers
     
         private string GenerateJSONWebToken(UserModel userInfo)    
         {    
+
+            //    var tokenHandler = new JwtSecurityTokenHandler();
+            // var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+            // var tokenDescriptor = new SecurityTokenDescriptor
+            // {
+            //     Subject = new ClaimsIdentity(new Claim[] 
+            //     {
+            //         new Claim(ClaimTypes.Name, user.Id.ToString()),
+            //         new Claim(ClaimTypes.Role, user.Role)
+            //     }),
+            //     Expires = DateTime.UtcNow.AddDays(7),
+            //     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            // };
+            // var token = tokenHandler.CreateToken(tokenDescriptor);
+            // user.Token = tokenHandler.WriteToken(token);
+            
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));    
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);    
     
@@ -58,6 +74,8 @@ namespace JWTAuthentication.Controllers
             {    
                 user = new UserModel { Username = "jasonmandabrandjai", EmailAddress = "jasonmandabrandja@gmail.com" };    
             }    
+
+        
             return user;    
         }    
     }    

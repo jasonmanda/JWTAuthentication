@@ -38,8 +38,8 @@ namespace JWTAuthentication
             // })
             .AddJwtBearer(options =>
          {
-            //  options.Authority = $"https://{Configuration["Jwt:Issuer"]}/";
-            //  options.Audience = Configuration["Jwt:Key"];
+             //  options.Authority = $"https://{Configuration["Jwt:Issuer"]}/";
+             //  options.Audience = Configuration["Jwt:Key"];
 
              options.TokenValidationParameters = new TokenValidationParameters
              {
@@ -96,7 +96,14 @@ namespace JWTAuthentication
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseCors(x => x
+           .AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader());
+
 
             app.UseEndpoints(endpoints =>
             {
