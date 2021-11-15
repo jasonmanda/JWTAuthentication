@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-
 namespace JWTAuthentication
 {
     public class Program
@@ -18,9 +17,14 @@ namespace JWTAuthentication
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+            
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                // webBuilder.UseKestrel(c => c.AddServerHeader = true);
+                webBuilder.UseKestrel(c => c.AddServerHeader = false);
+
+                 })
+                ;
     }
 }
